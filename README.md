@@ -28,6 +28,12 @@ To run rspec, in your terminal for testing the methods:
 -$ rspec
 ```
 
+To run the server:
+
+```
+-$ rails s
+```
+
 ### Prerequisites
 
 Ruby and rails installed on your local machine
