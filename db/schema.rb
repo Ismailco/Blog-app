@@ -15,44 +15,44 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_09_155230) do
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.integer "authorId"
-    t.integer "postId"
+    t.integer "author_id"
+    t.integer "post_id"
     t.text "text"
-    t.date "updatedAt"
-    t.date "createdAt"
+    t.date "updated_at"
+    t.date "created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.index ["authorId"], name: "index_comments_on_authorId"
-    t.index ["postId"], name: "index_comments_on_postId"
+    t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "authorId"
-    t.integer "postId"
-    t.date "createdAt"
-    t.date "updatedAt"
+    t.integer "author_id"
+    t.integer "post_id"
+    t.date "created_at"
+    t.date "updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.index ["authorId"], name: "index_likes_on_authorId"
-    t.index ["postId"], name: "index_likes_on_postId"
+    t.index ["author_id"], name: "index_likes_on_author_id"
+    t.index ["post_id"], name: "index_likes_on_post_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "authorId"
+    t.integer "author_id"
     t.text "title"
     t.text "text"
-    t.date "createdAt"
-    t.date "updatedAt"
+    t.date "created_at"
+    t.date "updated_at"
     t.integer "commentsCounter"
     t.integer "likesCounter"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.index ["authorId"], name: "index_posts_on_authorId"
+    t.index ["author_id"], name: "index_posts_on_author_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -60,8 +60,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_09_155230) do
     t.string "name"
     t.string "photo"
     t.string "bio"
-    t.date "updatedAt"
-    t.date "createdAt"
+    t.date "updated_at"
+    t.date "created_at"
     t.decimal "postsCounter"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
