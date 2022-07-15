@@ -3,17 +3,14 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   user = User.new(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.')
   subject { Post.new(author: user, title: 'Title', text: 'This is a text') }
-  # it { should belong_to(:author).class_name('User') }
-  # it { should have_many(:comments).foreign_key(:post_id) }
-  # it { should have_many(:likes).foreign_key(:post_id) }
-  # it { should validate_presence_of(:title) }
-  # it { should validate_length_of(:title).is_at_most(250) }
-  # it { should validate_numericality_of(:comments_counter).only_integer.is_greater_than_or_equal_to(0) }
-  # it { should validate_numericality_of(:likes_counter).only_integer.is_greater_than_or_equal_to(0) }
 
-  describe '#last_five_comments' do
+  describe 'Test methods' do
     it 'returns last five comments' do
       expect(subject.last_five_comments).to eq(subject.comments.order(created_at: :ASC).limit(5))
+    end
+
+    it 'update the post conter' do
+      expect(subject.update_posts_counter).to eq(user.update(posts_counter: user.posts.count))
     end
   end
 
@@ -90,32 +87,3 @@ RSpec.describe Post, type: :model do
     end
   end
 end
-# RSpec.describe User, type: :model do
-#   subject { User.new(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.') }
-#   before { subject.save }
-#   describe '#last_three_posts' do
-#     it 'returns last three posts' do
-#       expect(subject.last_three_posts).to eq(subject.posts.reverse)
-#     end
-#   end
-
-#   describe 'Test validations' do
-#     it 'returns false if the user name is not present' do
-#       subject.name = ''
-#       subject.posts_counter = 1
-#       expect(subject.valid?).to be false
-#     end
-
-#     it 'returns false if the user name is not present or "nil"' do
-#       subject.name = nil
-#       subject.posts_counter = 1
-#       expect(subject.valid?).to be false
-#     end
-
-#     it 'returns true if the user name is present' do
-#       subject.name = 'Ismail'
-#       subject.posts_counter = 1
-#       expect(subject.valid?).to be true
-#     end
-#   end
-# end
