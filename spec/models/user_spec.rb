@@ -27,5 +27,25 @@ RSpec.describe User, type: :model do
       subject.posts_counter = 1
       expect(subject.valid?).to be true
     end
+
+    it 'returns true if the post conter greater than or equel 0' do
+      subject.name = 'Ismail'
+      subject.posts_counter = 0
+      expect(subject.valid?).to be true
+      subject.posts_counter = 4
+      expect(subject.valid?).to be true
+    end
+
+    it 'returns false if the post conter less than 0' do
+      subject.name = 'Ismail'
+      subject.posts_counter = -1
+      expect(subject.valid?).to be false
+    end
+
+    it 'returns false if the post conter is not an integer' do
+      subject.name = 'Ismail'
+      subject.posts_counter = 'rr'
+      expect(subject.valid?).to be false
+    end
   end
 end
