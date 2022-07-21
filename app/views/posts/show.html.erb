@@ -1,1 +1,15 @@
-<h1>User post</h1>
+<section>
+<article>
+    <div>
+        <h3><%=@post.title%> by: <%=@post.author.name%></h3>
+        <p>Comments: <%=@post.comments_counter%>, Likes: <%=@post.likes_counter%></p>
+    </div>
+    <p><%=@post.text%></p>
+</article>
+
+<article>
+    <%@post.comments.each do |comment|%>
+        <p><%= comment.author.name %>: <%=comment.text%></p>
+    <%end%>
+</article>
+</section>
