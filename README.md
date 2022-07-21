@@ -31,6 +31,7 @@ To run rspec, in your terminal for testing the methods:
 To run the server:
 
 ```
+-$ bundle exec rake assets:precompile
 -$ rails s
 ```
 

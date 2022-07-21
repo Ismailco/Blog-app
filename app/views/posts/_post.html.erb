@@ -1,0 +1,9 @@
+<article class="posts">
+
+<%= link_to user_post_path(post.author_id, post.id) do %>
+          <h3 class="post-counter">Post #<%=post.id%>: <%= post.title%></h3>
+  <%end%>
+  
+  <p class="post-text"><%=post.text%></p>
+  <p class="post-comment-like">Comments: <%=post.comments_counter%>, Likes: <%=post.likes_counter%></p>
+</article>
