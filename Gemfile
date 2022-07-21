@@ -76,3 +76,5 @@ end
 gem 'rdoc'
 
 gem 'rails-controller-testing'
+
+gem "tailwindcss-rails", "~> 2.0"
