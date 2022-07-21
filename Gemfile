@@ -74,3 +74,5 @@ end
 
 # fix rails console
 gem 'rdoc'
+
+gem 'rails-controller-testing'
