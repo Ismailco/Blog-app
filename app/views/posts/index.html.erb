@@ -1,11 +1,13 @@
+<section class="post-list">
 <%= render @user %>
 <%@post.each do |post|%>
 <%= render post %>
-<article>
+<article class="comments">
     <%post.last_five_comments.each do |comment|%>
     <p><%=post.author.name%>: <%=comment.text%></p>
     <%end%>
 </article>
 <%end%>
 
-<button>Pagination</button>
+<button class="post-btn">Pagination</button>
+</section>

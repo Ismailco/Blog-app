@@ -1,14 +1,14 @@
-<section>
-<article>
+<section class="user-section">
 <%= render @user %>
-<article>
-    <h3>Bio</h3>
-    <p><%=@user.bio%></p>
+<article class="user-bio">
+    <h3 class="user-bio-header">Bio</h3>
+    <p class="user-bio-text"><%=@user.bio%></p>
 </article>
-
 <article>
 <%@post.each do |post| %>
     <%= render post %>
 <%end%>
 </article>
+
+<button class="user-btn">See all posts</button>
 </section>

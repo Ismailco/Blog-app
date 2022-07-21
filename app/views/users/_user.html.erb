@@ -1,7 +1,8 @@
-<article>
-    <img src="<%=user.photo%>", alt="post_image" height='200', width='200' />
-    <article >
-        <h2><%= user.name%></h2> 
-        <p>Number of posts: <%=user.posts_counter%></p>
+<article class="user">
+    <img class="user-img" src="<%=user.photo%>", alt="post_image"/>
+    <article class="user-info">
+        <h2 class="user-name"><%= link_to (user.name), user%></h2> 
+        <p class="post-count">Number of posts: <%=user.posts_counter%></p>
+        </a>
     </article>
 </article>
