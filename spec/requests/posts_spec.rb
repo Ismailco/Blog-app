@@ -36,7 +36,7 @@ RSpec.describe 'Posts', type: :request do
     end
 
     it 'include the correct text' do
-      expect(response.body).to include("User post")
+      expect(response.body).to include('User post')
     end
     it 'returns http success' do
       expect(response).to have_http_status(:success)

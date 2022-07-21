@@ -35,7 +35,7 @@ RSpec.describe 'Posts', type: :request do
     end
 
     it 'include the correct text' do
-      expect(response.body).to include("User show")
+      expect(response.body).to include('User show')
     end
 
     it 'returns http success' do
@@ -43,4 +43,3 @@ RSpec.describe 'Posts', type: :request do
     end
   end
 end
-
