@@ -5,10 +5,11 @@
     <p class="user-bio-text"><%=@user.bio%></p>
 </article>
 <article>
-<%@post.each do |post| %>
+<%@user.posts.each do |post| %>
     <%= render post %>
 <%end%>
 </article>
 
-<button class="user-btn">See all posts</button>
+<a href="<%= user_posts_path(@user.id)%>" class="user-btn">See all posts</a>
+ <%= link_to "new", new_user_post_path(@user.id), class: 'post-btn' %> 
 </section>
