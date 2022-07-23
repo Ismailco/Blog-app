@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
 
   def index
     @user = User.find(params[:user_id])
@@ -8,14 +7,17 @@ class PostsController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
+    @post = @user.posts.find(params[:id])
   end
 
   def new
-    @post = Post.new(author_id: params[:user_id], comments_counter: 0, likes_counter: 0)
+    @post = current_user.posts.new(author_id: params[:user_id], comments_counter: 0, likes_counter: 0)
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
+    @post.comments_counter = 0
+    @post.likes_counter = 0
 
     respond_to do |format|
       if @post.save
@@ -27,10 +29,6 @@ class PostsController < ApplicationController
   end
 
   private
-
-  def set_post
-    @post = Post.find(params[:id])
-  end
 
   def post_params
     params.require(:post).permit(:author_id, :title, :text, :comments_counter, :likes_counter)
