@@ -33,6 +33,17 @@
   align-self: center;
 }
 
-.post-btn:active {
+.post-like-btn {
+  padding: 100px !important;
+  margin: 20px;
+}
+
+.post-btn:active,
+.post-like-btn:active {
   background-color: #dbdbdb;
+}
+
+button:hover,
+.post-like-btn:hover {
+  cursor: pointer;
 }
