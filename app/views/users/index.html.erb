@@ -1,3 +1,8 @@
-<% @user.each do |user| %>
+<p style="color: green"><%= notice %></p>
+<div id="users">
+  <% @users.each do |user| %>
     <%= render user %>
-<% end %>
+  <% end %>
+</div>
+
+<%= link_to "New user", new_user_path, class: 'post-btn' %>
