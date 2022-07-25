@@ -89,4 +89,30 @@ RSpec.configure do |config|
   #   # test failures related to randomization by passing the same `--seed` value
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
+  if Bullet.enable?
+   config.before(:each) { Bullet.start_request }
+   config.after(:each) { Bullet.end_request }
+ end
+
+ config.before(:suite) do
+   DatabaseCleaner.clean_with(:truncation)
+ end
+
+ config.before(:each) do
+   DatabaseCleaner.strategy = :transaction
+ end
+
+ config.before(:each, js: true) do
+   DatabaseCleaner.strategy = :truncation
+ end
+
+ # This block must be here, do not combine with the other `before(:each)` block.
+ # This makes it so Capybara can see the database.
+ config.before(:each) do
+   DatabaseCleaner.start
+ end
+
+ config.after(:each) do
+   DatabaseCleaner.clean
+ end
 end
