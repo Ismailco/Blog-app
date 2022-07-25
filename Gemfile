@@ -53,8 +53,8 @@ group :development, :test do
   gem 'bullet'
   gem 'database_cleaner'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  gem 'rspec-rails'
   gem 'rails-controller-testing'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -77,7 +77,3 @@ end
 
 # fix rails console
 gem 'rdoc'
-
-gem 'rails-controller-testing'
-
-gem 'tailwindcss-rails', '~> 2.0'
