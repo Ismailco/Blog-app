@@ -62,7 +62,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   if Bullet.enable?
-   config.before(:each) { Bullet.start_request }
-   config.after(:each) { Bullet.end_request }
- end
+    config.before(:each) { Bullet.start_request }
+    config.after(:each) { Bullet.end_request }
+  end
 end
