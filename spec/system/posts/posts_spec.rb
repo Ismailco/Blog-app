@@ -18,7 +18,7 @@ RSpec.describe 'Post', type: :feature do
       end
 
       it 'I can see the number of posts the user has written' do
-        expect(page).to have_content('Number of posts : 0')
+        expect(page).to have_content('Number of posts: 1.0')
       end
 
       it 'I can see some of the post\'s body' do
@@ -30,19 +30,15 @@ RSpec.describe 'Post', type: :feature do
       end
 
       it 'I can see how many comments a post has.' do
-        expect(page).to have_content 'Comments : 5'
+        expect(page).to have_content 'Comments : 2'
       end
 
       it 'I can see how many likes a post has.' do
         expect(page).to have_content 'Likes : 7'
       end
 
-      it 'I can see a section for pagination if there are more posts than fit on the view.' do
-        expect(page).to have_content 'Pagination'
-      end
-
       it 'When I click on a post, it redirects me to that post\'s show page.' do
-        click_link
+        click_link 'Tests'
         expect(current_path).to eq user_post_path(@user.id, @post.id)
       end
       it 'if comments counter is integer' do
@@ -61,10 +57,10 @@ RSpec.describe 'Post', type: :feature do
         expect(page).to have_content 'Nemwel'
       end
       it 'Can see how many comments it has' do
-        expect(page).to have_content 'Comments : 5'
+        expect(page).to have_content 'Comments: 2'
       end
       it 'Can see how many likes it has' do
-        expect(page).to have_content 'Likes : 7'
+        expect(page).to have_content 'Likes: 7'
       end
       it 'Can see the post body' do
         expect(page).to have_content 'testing'
