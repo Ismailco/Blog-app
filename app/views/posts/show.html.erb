@@ -9,7 +9,7 @@
         <p class="post"><%=@post.text%></p>
 
     <article class="comments">
-        <%@post.comments.each do |comment|%>
+        <%@post.comments.includes([:author]).each do |comment|%>
             <p><%= comment.author.name %>: <%=comment.text%></p>
         <%end%>
     </article>

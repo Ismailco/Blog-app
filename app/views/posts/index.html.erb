@@ -1,12 +1,10 @@
-<p style="color: green"><%= notice %></p>
-
-
-<div id="posts">
-  <% @posts.each do |post| %>
+<section class="user-section">
+<%= render @user %>
+<article class="comments">
+<%@user.posts.each do |post| %>
     <%= render post %>
-  <% end %>
-</div>
-
-<%= link_to new_user_post_path do %>
-<button class="post-btn">New Post</button>
 <%end%>
+</article>
+
+ <%= link_to "new", new_user_post_path(@user.id), class: 'post-btn' %> 
+</section>

@@ -10,6 +10,6 @@
 <%end%>
 </article>
 
-<a href="<%= user_posts_path(@user.id)%>" class="user-btn">See all posts</a>
+ <%= link_to "See all posts", user_posts_path(@user.id), class: "user-btn"%>
  <%= link_to "new", new_user_post_path(@user.id), class: 'post-btn' %> 
 </section>
