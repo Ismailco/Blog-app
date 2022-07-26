@@ -40,7 +40,7 @@ RSpec.describe 'Users Page' do
       before(:each) do
         click_link 'Ismail'
         click_link 'See all posts'
-        click_link 'New Post'
+        click_link 'new'
         fill_in 'Title', with: 'This is my first post'
         fill_in 'Text', with: 'This is my first post body'
         click_button 'Create Post'
@@ -50,14 +50,14 @@ RSpec.describe 'Users Page' do
 
       def create_posts
         click_link 'See all posts'
-        click_link 'New Post'
+        click_link 'new'
         fill_in 'Title', with: 'This is my second post'
         fill_in 'Text', with: 'This is my second post body'
         click_button 'Create Post'
         visit '/users'
         click_link 'Ismail'
         click_link 'See all posts'
-        click_link 'New Post'
+        click_link 'new'
         fill_in 'Title', with: 'This is my third post'
         fill_in 'Text', with: 'This is my third post body'
         click_button 'Create Post'

@@ -1,7 +1,7 @@
 <div class="comments">
   <div class="post-info-ctn">
     <div class="post-info-head">
-      <h3>Post <%= post.id %> by <%= @user.name %></h3>
+      <h3>Post: <%= post.id %><br><%= link_to "#{post.title} by #{@user.name}", user_post_path(@user.id, post.id) %></h3>
       <div class="post-right-info">
         <h5>Comments : <%= post.comments_counter %></h5>
         <h5>Likes : <%= post.likes_counter %></h5>
