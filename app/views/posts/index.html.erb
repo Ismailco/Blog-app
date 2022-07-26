@@ -1,4 +1,6 @@
-<div>
+<%
+=begin%>
+ <div>
   <%= link_to new_user_post_path(@user.id), class: "link-info" do %>
     <button>Create new post</button>
   <% end %>
@@ -6,8 +8,7 @@
 <div class="users-ctn">
   <% @users.each do |user| %>
     <div class="user-ctn">
-      <%#= image_tag( user.photo, size: "50x50") %>
-      <img src="<%= user.photo %>" alt="image">
+      <img class="user-img" src="<%= user.photo %>" alt="image">
       <%= link_to user_path(user.id), class: "link-info" do %>
         <div class="user-l-info">
           <h5><%= user.name %></h5>
@@ -16,4 +17,17 @@
       <% end %>
     </div>
   <% end %>
-</div>
+</div> 
+<%
+=end%>
+
+<section class="user-section">
+<%= render @user %>
+<article class="comments">
+<%@user.posts.each do |post| %>
+    <%= render post %>
+<%end%>
+</article>
+
+ <%= link_to "new", new_user_post_path(@user.id), class: 'post-btn' %> 
+</section>
