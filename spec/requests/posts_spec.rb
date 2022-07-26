@@ -1,45 +1,81 @@
-# require 'rails_helper'
+require 'rails_helper'
+RSpec.describe 'Post', type: :feature do
+  describe 'Post' do
+    before(:each) do
+      @user = User.create(name: 'Nemwel', photo: 'nemwel.jpg', bio: 'Taekwondo master.')
+      @post = Post.create(author: @user, title: 'Tests', text: 'testing', likes_counter: 7,
+                          comments_counter: 5)
+      @post.save
+      @comment1 = Comment.create(text: 'My first comment', author: @user, post: @post)
+      @comment2 = Comment.create(text: 'My second comment', author: @user, post: @post)
+    end
 
-# RSpec.describe 'Posts', type: :request do
-#   describe 'GET /index' do
-#     before(:example) { get '/users/:user_id/posts' }
+    feature 'Post index page' do
+      background { visit user_posts_path(@user.id) }
 
-#     it 'should return success' do
-#       expect(response).to have_http_status(:ok)
-#     end
+      it 'I can see the user\'s profile picture.' do
+        expect(page.first('img')['src']).to have_content 'nemwel.jpg'
+      end
 
-#     it 'should return a 200 response status code' do
-#       expect(response).to have_http_status 200
-#     end
+      it 'I can see the number of posts the user has written' do
+        expect(page).to have_content('Number of posts : 0')
+      end
 
-#     it 'should render index template' do
-#       expect(response).to render_template('index')
-#     end
+      it 'I can see some of the post\'s body' do
+        expect(page).to have_content 'testing'
+      end
 
-#     it 'include the correct text' do
-#       expect(response.body).to include('All posts')
-#     end
+      it 'I can see the user\'s username.' do
+        expect(page).to have_content 'Nemwel'
+      end
 
-#     it 'returns http success' do
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
+      it 'I can see how many comments a post has.' do
+        expect(page).to have_content 'Comments : 5'
+      end
 
-#   describe 'GET /show' do
-#     before(:example) { get '/users/:user_id/posts/:id' }
-#     it 'the request is a success' do
-#       expect(response).to have_http_status(:ok)
-#     end
+      it 'I can see how many likes a post has.' do
+        expect(page).to have_content 'Likes : 7'
+      end
 
-#     it 'renders the right template' do
-#       expect(response).to render_template('show')
-#     end
+      it 'I can see a section for pagination if there are more posts than fit on the view.' do
+        expect(page).to have_content 'Pagination'
+      end
 
-#     it 'include the correct text' do
-#       expect(response.body).to include('User post')
-#     end
-#     it 'returns http success' do
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
-# end
+      it 'When I click on a post, it redirects me to that post\'s show page.' do
+        click_link
+        expect(current_path).to eq user_post_path(@user.id, @post.id)
+      end
+      it 'if comments counter is integer' do
+        @post.comments_counter = 8
+        expect(@post).to be_valid
+      end
+    end
+
+    feature 'Post show' do
+      background { visit user_post_path(@user.id, @post.id) }
+      it 'I can see the post\'s title.' do
+        expect(page).to have_content 'testing'
+      end
+
+      it 'Can see who wrote the post' do
+        expect(page).to have_content 'Nemwel'
+      end
+      it 'Can see how many comments it has' do
+        expect(page).to have_content 'Comments : 5'
+      end
+      it 'Can see how many likes it has' do
+        expect(page).to have_content 'Likes : 7'
+      end
+      it 'Can see the post body' do
+        expect(page).to have_content 'testing'
+      end
+      it 'Can see the username of each commentor' do
+        expect(page).to have_content 'Nemwel'
+      end
+      it 'Can see the comment each commentor left' do
+        expect(page).to have_content 'My first comment'
+        expect(page).to have_content 'My second comment'
+      end
+    end
+  end
+end
