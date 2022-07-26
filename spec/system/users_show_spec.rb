@@ -50,6 +50,5 @@ RSpec.describe 'Users Page' do
         expect(like).to have_content('All likes')
       end
     end
-
   end
 end
