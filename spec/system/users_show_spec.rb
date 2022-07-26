@@ -35,5 +35,50 @@ RSpec.describe 'Users Page' do
       click_link 'Ismail'
       expect(page).to have_content('This is my bio')
     end
+
+    describe 'Test user and expect to: ' do
+      before(:each) do
+        click_link 'Ismail'
+        click_link 'See all posts'
+        click_link 'New Post'
+        fill_in 'Title', with: 'This is my first post'
+        fill_in 'Text', with: 'This is my first post body'
+        click_button 'Create Post'
+        visit '/users'
+        click_link 'Ismail'
+      end
+
+      def create_posts
+        click_link 'See all posts'
+        click_link 'New Post'
+        fill_in 'Title', with: 'This is my second post'
+        fill_in 'Text', with: 'This is my second post body'
+        click_button 'Create Post'
+        visit '/users'
+        click_link 'Ismail'
+        click_link 'See all posts'
+        click_link 'New Post'
+        fill_in 'Title', with: 'This is my third post'
+        fill_in 'Text', with: 'This is my third post body'
+        click_button 'Create Post'
+      end
+
+      it 'See the users first 3 posts' do
+        create_posts
+        expect(page).to have_content('This is my first post')
+        expect(page).to have_content('This is my second post')
+        expect(page).to have_content('This is my third post')
+      end
+
+      it 'Redirect to the post show page' do
+        click_link 'This is my first post'
+        expect(page).to have_content('This is my first post')
+      end
+
+      it 'Redirect to see all posts' do
+        click_link 'See all posts'
+        expect(page).to have_content('This is my first post')
+      end
+    end
   end
 end
