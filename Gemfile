@@ -78,5 +78,4 @@ end
 # fix rails console
 gem 'rdoc'
 
-# install devise
 gem 'devise'
